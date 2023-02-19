@@ -1,0 +1,364 @@
+swagger: '2.0'
+info:
+  description: This is a simple API
+  version: 1.0.0
+  title: Simple Inventory API
+  # put the contact info for your development or API team
+  contact:
+    email: you@your-company.com
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# tags are used for organizing operations
+#tags:
+#- name: admins
+#  description: Secured Admin-only calls
+#- name: developers
+#  description: Operations available to regular developers
+
+paths:
+  /addcar:
+    get:
+      summary: shows add screen
+      responses:
+        201:
+          description: "HTML page"
+    post:
+      summary: adds car
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: Car
+          required: true
+          schema:
+            $ref: '#/definitions/Car'
+      responses:
+        201:
+          description: "success"
+        303:
+          description: "license plate already exists"
+
+  /deletecar:
+    post:
+      summary: removes car listing
+      parameters:
+        - in: body
+          name: Carid
+          required: true
+          schema:
+            $ref: '#/definitions/Car'
+      responses:
+        204:
+          description: "success"
+  /managecar:
+    get:
+      summary: shows add screen
+      responses:
+        201:
+          description: "HTML page"
+    post:
+      summary: modify car
+      parameters:
+        - in: body
+          name: manage Car
+          schema:
+            $ref: '#/definitions/Manage'
+      responses:
+        201:
+          description: "success"
+        500:
+          description: "A server error occurred"
+
+  /showownedcars:
+    get:
+      summary: shows what cars the owner has registered
+      responses:
+        200:
+          description: shows cars
+  /makereservation:
+    post:
+      summary: create a reservation to car
+      parameters:
+        - in: body
+          name: Reservation
+          schema:
+            $ref: '#/definitions/Reservation'
+      responses:
+        200:
+          description: success
+
+  /editreservation:
+    post:
+      summary: edit or delete reservation
+      parameters:
+        - in: body
+          name: Reservation
+          schema:
+            $ref: '#/definitions/Reservation'
+      responses:
+        200:
+          description: success
+  /checkdestination:
+    get:
+      summary: car asks if it has a new destination, and if so info on it
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: carID
+
+      responses:
+        404:
+          description: no new destination
+        200:
+          description: json of reservation, + destination literal for nav
+  /signalreacheddestination:
+    post:
+      summary: car notifies it reached current destination
+      responses:
+        200:
+          description: "success"
+  /positioncustomer:
+    get:
+      summary: get last known position
+      responses:
+        200:
+          description: posJson
+
+    post:
+      summary: update last known position
+      parameters:
+        - in: body
+          name: customerPos
+          schema:
+            $ref: '#/definitions/Customer'
+      responses:
+        200:
+          description: "success"
+  /positioncar:
+    get:
+      summary: get last known position
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: posJson
+    post:
+      summary: update last known position
+      parameters:
+        - in: body
+          name: customerPos
+          schema:
+            $ref: '#/definitions/Car'
+      responses:
+        200:
+          description: "success"
+  /searchAvail:
+    get:
+      summary: exec search query
+      consumes:
+        - application/json
+      parameters:
+        - in: body
+          name: SearchQuery
+          schema:
+            $ref: '#/definitions/SearchQuery'
+      responses:
+        200:
+          description: shows data
+
+  /addfeedback:
+    get:
+      summary: adds a position to the reservation
+      parameters:
+        - in: body
+          name: reservation
+          schema:
+            $ref: '#/definitions/Feedback'
+      responses:
+        201:
+          description: "success"
+
+definitions:
+  SearchQuery:
+    type: object
+    required:
+      - cost
+      - position
+      - destination
+      - userId
+      - numerOfPassengers
+    properties:
+      id:
+        type: string
+        format: uuid
+  Manage:
+    type: object
+    additionalProperties:
+      additionalProperties: true
+      properties:
+        car:
+          $ref: '#/definitions/Car'
+        availabilityPresent:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: date-time
+          format: date-time
+        availabilityFuture:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: date-time
+          format: date-time
+        cost:
+          type: number
+        maxDistanceFromFixedPoint: #(ex. max 50 km from city center)
+          type: integer
+        minDistance: #(min distance for a ride es 1km)
+          type: integer
+
+  Car:
+    type: object
+    required:
+      - id
+      - name
+      - owner
+      - carModel
+
+    properties:
+      id:
+        type: string
+        format: licensePlate
+      ownerId:
+        type: string
+        format: uuid
+      Name:
+        type: string
+      carModel:
+        type: string
+        #irl it would be an array of models
+      extraData:
+        type: string
+      availabilityFuture:
+        description: availabilty windows today (standard-temporary)
+        type: array
+        items:
+          type: object
+          properties:
+            unit:
+              #single time window
+              type: string
+              format: date-time
+        format: date-time
+      availabilityStandard:
+        description: availabilty windows without temporary (permanet)
+        type: array
+        items:
+          type: object
+          properties:
+            unit:
+              #single time window
+              type: string
+              format: date-time
+        format: date-time
+
+      availabilityPresent:
+        type: boolean
+      PriceHour:
+        type: integer
+      PriceKm:
+        type: integer
+      position:
+        type: string
+      battery:
+        type: integer
+        format: percentage
+
+  Owner:
+    required:
+      - id
+    properties:
+      id:
+        type: string
+        format: uuid
+        example: ACME Corporation
+      extraData:
+        type: string
+
+  Customer:
+    required:
+      - id
+      - position
+    properties:
+      id:
+        type: string
+        format: uuid
+      position:
+        type: string
+        example: "45.4532 42.3213"
+
+  Reservation:
+    required:
+      - id
+      - carId
+      - customerId
+      - destination
+      - startingPos
+      - pickupTime
+      - reservationTime
+    properties:
+      id:
+        type: string
+        format: uuid
+      carId:
+        type: string
+        format: uuid
+      customerId:
+        type: string
+        format: uuid
+      destination:
+        type: string
+      startingPost:
+        type: string
+      pickupTime:
+        type: string
+        format: date-time
+      reservationTime:
+        type: string
+        format: date-time
+  Feedback:
+    type: object
+    required:
+      - id
+      - reservationId
+      - value
+    properties:
+      id:
+        type: string
+        format: uuid
+      reservationId:
+        type: string
+        format: uuid
+      value:
+        type: integer
+      text:
+        type: string
+
+
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /G425/B-next/1.0.0
+schemes:
+  - https

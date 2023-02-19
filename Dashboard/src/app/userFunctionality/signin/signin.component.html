@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page with Background Image Example</title>
+  <link rel="stylesheet" href="./signin.component.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="bg"></div>
+<form name='signinForm' (submit)="doSignin()">
+<div style="margin-bottom: 10pt; color : black" *ngIf='error'>{{error}}</div>	
+
+  <div class="form-field" >
+    <input type="email" placeholder="Email / Username" required name='username' [(ngModel)]="username"/>
+  </div>
+  
+  <div class="form-field" >
+    <input type="password" placeholder="Password" required name='password' [(ngModel)]="password"/>                         </div>
+  
+    <div class="form-field">
+      <button name="login" class="btn" type="submit" (click)="simpleLogin()" value="Signin" #login>Log in</button>
+    </div>
+  
+    <div class="form-field">
+      <button id="lgGoogle" name="googleLogin" type="submit" (click)="loginGoogle()" class="btn" #loginRef >Login with Google</button>
+    </div>  
+
+  <div style="margin-left: 60pt; margin-top: 20pt;">Don't have account? <a routerLink="/signup">Signup</a></div>
+            
+
+</form>
+
+<!-- partial -->
+  
+</body>
+</html>

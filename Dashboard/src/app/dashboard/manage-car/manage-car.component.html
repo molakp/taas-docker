@@ -1,0 +1,73 @@
+<div _ngcontent-c11="" class="card">
+  <div _ngcontent-c11="" class="card-header">
+    <h5 _ngcontent-c11="" class="title">Manage Car</h5>
+  </div>
+  <div _ngcontent-c11="" class="card-body">
+    <form _ngcontent-c11="" novalidate="" class="ng-untouched ng-pristine ng-valid">
+      <div _ngcontent-c11="" class="row">
+        <div _ngcontent-c11="" class="col-md-4 pl-1">
+          <div _ngcontent-c11="" class="form-group"><label _ngcontent-c11="" for="email">Plate Number</label><input
+              _ngcontent-c11="" class="form-control mt-3" id="Plate Number" name="Plate Number"
+              placeholder="Plate Number" type="Plate Number" [(ngModel)]="modifiedCar.plateNumber" name="plateNumber"
+              disabled="">
+          </div>
+        </div>
+        <div _ngcontent-c11="" class="col-md-5 pr-1">
+          <div _ngcontent-c11="" class="form-group"><label _ngcontent-c11="">Manufacturer</label>
+            <input _ngcontent-c11="" class="form-control mt-3" placeholder="Company" type="text"
+              value="Manufacturer name" [(ngModel)]="modifiedCar.name" name="name">
+          </div>
+        </div>
+
+        <div _ngcontent-c11="" class="col-md-3 px-1">
+          <div _ngcontent-c11="" class="form-group"><label _ngcontent-c11="">Model</label>
+            <input _ngcontent-c11="" class="form-control mt-3" placeholder="Model" type="text" value="Model"
+              [(ngModel)]="modifiedCar.carModel" name="carModel">
+          </div>
+        </div>
+
+      </div>
+
+      <div _ngcontent-c11="" class="row">
+        <div _ngcontent-c11="" class="col-md-6 pr-1">
+          <div _ngcontent-c11="" class="form-group"><label _ngcontent-c11="">Price Hour</label><input _ngcontent-c11=""
+              class="form-control mt-3" placeholder="Price Hour" type="number" value="Price Hour"
+              [(ngModel)]="modifiedCar.priceHour " name="priceHour">
+          </div>
+        </div>
+        <div _ngcontent-c11="" class="col-md-6 pl-1">
+          <div _ngcontent-c11="" class="form-group"><label _ngcontent-c11="">priceKm</label><input _ngcontent-c11=""
+              class="form-control mt-3" placeholder="priceKm" type="number" value="priceKm"
+              [(ngModel)]="modifiedCar.priceKm" name="priceKm"></div>
+        </div>
+      </div>
+
+
+      <div _ngcontent-c11="" class="row">
+        <div _ngcontent-c11="" class="col-md-6 pr-1">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">Availability</label>
+            <input _ngcontent-c11="" class="form-control mt-3" placeholder="Availability" type="text"
+              [(ngModel)]="modifiedCar.availabilityPresent" name="carAvailability" required>
+          </div>
+        </div>
+        <div _ngcontent-c11="" class="col-md-6 pl-1">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">Battery Level</label>
+            <input _ngcontent-c11="" class="form-control mt-3" placeholder="Battery level" type="number"
+              [(ngModel)]="modifiedCar.battery" name="carBatteryLevel">
+          </div>
+        </div>
+      </div>
+
+      <div _ngcontent-c11="" class="row"></div>
+
+      <div class="button-group text-center mt-3">
+        <button type="submit" name="edit_Settings" class="btn btn-outline-success btn-lg me-5 col-md-auto"
+          (click)="updateCar()"> Save </button>
+      </div>
+
+
+    </form>
+  </div>
+</div>

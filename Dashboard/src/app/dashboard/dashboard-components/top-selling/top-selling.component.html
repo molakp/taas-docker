@@ -1,0 +1,86 @@
+<div class="card">
+  <div class="card-body">
+    <!-- title -->
+
+    <div class="row ">
+      <div class="col-md-2">
+        <h4 class="card-title">Owned Cars</h4>
+        <h5 class="card-subtitle">Overview</h5>
+      </div>
+
+      <div class="col">
+        <div class="button-group ">
+
+          </div>
+          <button type="button" class="btn btn-outline-info ms-4" (click)="addCar()">
+            Add car
+          </button>
+
+      </div>
+    </div>
+
+    <div class="row ">
+
+
+
+    </div>
+
+    <!-- title -->
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead>
+          <tr>
+            <th class="text-dark font-medium fs-4">Car Model</th>
+            <th class="text-dark font-medium fs-4">Plate Number</th>
+            <th class="text-dark font-medium fs-4">Avaiable</th>
+            <th class="text-dark font-medium fs-4">Price Hour</th>
+            <th class="text-dark font-medium fs-4">Battery Level</th>
+            <th class="text-dark font-medium fs-4">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let ts of owenedCarsCurrentUser'>
+            <td>
+              <div class="d-flex align-items-center">
+
+                <div class="ms-3">
+                  <h5 class="mb-0 font-medium">{{ts.carModel}}</h5>
+                  <!-- <span class="text-muted">{{ts.carModel}}</span> -->
+                </div>
+              </div>
+            </td>
+            <td class="fs-4">{{ts.plateNumber}}</td>
+
+
+            <td>
+              <span *ngIf="ts.availabilityPresent == true" class="mb-1 me-2 badge bg-success">Avaiable</span>
+              <span *ngIf="ts.availabilityPresent == false" class="mb-1 me-2 badge bg-danger">Busy</span>
+              <!--<h5 class="mb-0 fw-normal">{{ts.availabilityPresent}}</h5> -->
+            </td>
+            <td>
+              <h5 class="mb-0 fw-normal">{{ts.priceHour}}$</h5>
+            </td>
+
+            <td>
+              <h5 class="mb-0 fw-normal">{{ts.battery}}</h5>
+            </td>
+
+            <td>
+              <div class="button-group">
+                <button type="button" class="btn btn-outline-primary" (click)="manageCar(ts.plateNumber!);">
+                  Manage
+                </button>
+
+                <button (click)="deleteCar(ts.carId!)" type="button" class="btn btn-outline-danger">
+                  Delete
+                </button>
+              </div>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,84 @@
+<div _ngcontent-c11="" class="card">
+  <div _ngcontent-c11="" class="card-header">
+    <h5 _ngcontent-c11="" class="title">Add Car</h5>
+  </div>
+  <div _ngcontent-c11="" class="card-body">
+
+
+    <form _ngcontent-c11="" novalidate="" class="ng-untouched ng-pristine ng-valid">
+      <div _ngcontent-c11="" class="row">
+        <div _ngcontent-c11="" class="col-md-6 pr-1">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">Manufacturer</label>
+            <input _ngcontent-c11="" class="form-control mt-3" placeholder="Manufacturer" type="text"
+              [(ngModel)]="carToAdd.name" name="carName" value="....">
+          </div>
+        </div>
+        <div _ngcontent-c11="" class="col-md-6 pl-1">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">Model</label>
+            <input _ngcontent-c11="" class="form-control mt-3" placeholder="Model" type="text"
+              [(ngModel)]="carToAdd.carModel" name="carModel">
+          </div>
+        </div>
+      </div>
+
+
+      <div _ngcontent-c11="" class="row">
+        <div _ngcontent-c11="" class="col-md-6 pr-1">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">Plate Number</label>
+            <input _ngcontent-c11="" class="form-control mt-3" placeholder="Plate Number" type="text"
+              [(ngModel)]="carToAdd.plateNumber" name="carPlateNumber" required="">
+          </div>
+        </div>
+
+        <div _ngcontent-c11="" class="col-md-6 pl-1">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">Availability</label>
+            <input _ngcontent-c11="" class="form-control mt-3" placeholder="Availability" type="text"
+              [(ngModel)]="carToAdd.availabilityPresent" name="carAvailability" required>
+          </div>
+        </div>
+      </div>
+
+      <div _ngcontent-c11="" class="row">
+        <div _ngcontent-c11="" class="col-md-3 pr-1 me-5">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">Price Hour</label>
+            <input _ngcontent-c11="" class="form-control mt-3" placeholder="Price Hour" type="number"
+              [(ngModel)]="carToAdd.priceHour" name="carPriceHour">
+          </div>
+        </div>
+        <div _ngcontent-c11="" class="col-md-3 pl-1 ms-5">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">PriceKm</label>
+            <input _ngcontent-c11="" class="form-control mt-3" placeholder="priceKm" type="number"
+              [(ngModel)]="carToAdd.priceKm" name="carPriceKm">
+          </div>
+        </div>
+        <div _ngcontent-c11="" class="col-md-3 pl-1 ms-5">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">Battery Level</label>
+            <input _ngcontent-c11="" class="form-control mt-3" placeholder="battery level" type="number"
+              [(ngModel)]="carToAdd.battery" name="carBatteryLevel">
+          </div>
+        </div>
+      </div>
+
+
+      <div _ngcontent-c11="" class="row">
+
+      </div>
+      <div class="text-center" style="color : salmon" *ngIf='error'>{{error}}</div>
+
+      <div class="button-group text-center mt-3">
+        <button type="submit" name="edit_Settings" class="btn btn-outline-success btn-lg me-5 col-md-auto"
+          (click)="addCar()"> Add car
+        </button>
+      </div>
+
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page with Background Image Example</title>
+  <link rel="stylesheet" href="./signup.component.css">
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <div id="bg"></div>
+ 
+  <form name='signupForm' (submit)="doSignup()">
+	<div style="color : red" *ngIf='error'>{{error}}</div>
+	<div style="color : green" *ngIf='success'>{{success}}</div>
+
+    <div class="form-field">
+      <input type="email" placeholder="Email / Username" required name='username' [(ngModel)]="username" />
+    </div>
+
+    <div class="form-field">
+      <input type="password" placeholder="Password" required name='password' [(ngModel)]="password" />
+    </div>
+
+
+
+    <div *ngFor="let role of user_roles">
+
+      <!--<input [(ngModel)]="role.selected" name="{{ role.name }}" type="checkbox" id="{{role.name}}" (change)="onChangeCategory($event, role)">
+			<label class="form-check-label" for="{{role.name}}">
+				{{role.name}}
+			</label>
+
+		
+			
+			<label _ngcontent-c3="" class="form-check-label">
+				<input _ngcontent-c1="" checked="" class="form-check-input" id="exampleRadios1" name="exampleRadios" type="radio" value="option2">
+				<span _ngcontent-c3="" class="form-check-sign"></span> {{role.name}} 
+			</label>
+
+
+			<label _ngcontent-c3="" class="form-check-radio">
+        <input _ngcontent-c1="" class="form-check-input" type="radio" id="{{role.name}}" [(ngModel)]="role.selected"
+          name="{{ role.name }}" (change)="onChangeCategory($event, role)">
+        <span _ngcontent-c3="" class="form-check-sign"></span> {{role.name}}
+      </label>
+    </div>
+
+
+
+			<div _ngcontent-c4="" class="form-check-radio">
+			<label _ngcontent-c4="" class="form-check-label">
+				<input _ngcontent-c4="" checked="" class="form-check-input" id="exampleRadios2" name="exampleRadios" type="radio" value="option2"> {{role.name}}
+				<span _ngcontent-c4="" class="form-check-sign"></span>
+			</label>
+		</div>
+		-->
+      
+
+
+			<div _ngcontent-c4="" class="form-check-radio" >
+				<label _ngcontent-c4="" class="form-check-label">
+					<input _ngcontent-c4="" class="form-check-input" id="exampleRadios2" name="exampleRadios" type="radio" value="{{role.name}}"
+							id="{{role.name}}" [(ngModel)]="role.selected"
+						name="{{ role.name }}" (change)="onChangeCategory($event, role)"> {{role.name}}
+					<span _ngcontent-c4="" class="form-check-sign"></span>
+				</label>
+			</div>
+	</div>
+
+
+
+    <div class="form-field">
+      <button class="btn" type="submit" name="submit" value="Signin">Sign up</button>
+    </div>
+
+    <div style="margin-left: 60pt; margin-top: 20pt;">Have account? <a routerLink="/signin">Signin</a></div>
+
+
+  </form>
+
+
+  <!-- partial -->
+
+</body>
+
+</html>

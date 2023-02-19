@@ -1,0 +1,40 @@
+version: '3'
+services:
+  discovery-server:
+    image: ssilvestro/discovery-server
+    container_name: discovery-server
+    build: ./discovery-server
+    # Port exposed to allow interaction with the Web UI.
+    ports:
+      - '8761:8761'
+  api-gateway:
+    image: ssilvestro/api-gateway
+    container_name: api-gateway
+    build: ./gateway
+    ports:
+      - '9191:9191'
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+  api-service:
+    image: ssilvestro/api-service
+    container_name: api-service
+    build: ./api-service
+    ports:
+      - '8080:8080'
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+  position-service:
+    image: ssilvestro/position-service
+    container_name: position-service
+    build: ./position-service
+    ports:
+      - '8081:8081'
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+
+  dashboard:
+    container_name: dashboard
+    build: ./dashboard
+    # Port exposed to allow interaction with the Web UI.
+    ports:
+      - '4200:4200'

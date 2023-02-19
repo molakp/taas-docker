@@ -1,0 +1,48 @@
+<!-- ============================================================== -->
+<!-- toggle and nav items -->
+<!-- ============================================================== -->
+<ul class="navbar-nav float-start me-auto">
+
+  <!-- ============================================================== -->
+  <!-- create new -->
+  <!-- ============================================================== -->
+
+</ul>
+<!-- ============================================================== -->
+<!-- Right side toggle and nav items -->
+<!-- ============================================================== -->
+<ul class="navbar-nav float-end">
+  <!-- ============================================================== -->
+  <!-- User profile and search -->
+  <!-- ============================================================== -->
+  <li class="nav-item" ngbDropdown placement="bottom-end">
+    <a
+      ngbDropdownToggle
+      class="nav-link waves-effect waves-dark pro-pic"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      <img
+        src="assets/images/users/user1.jpg"
+        alt="user"
+        class="rounded-circle"
+        width="31"
+      />
+      <!-- Se il nome dell'utente non è null avrò come messaggio di benvenuto il suo nome, altrimenti uso il suo username-->
+      <span class="ms-2">{{username == undefined ? username : email}}</span>
+    </a>
+    <div class="dropdown-menu-right" ngbDropdownMenu>
+      <!-- <a class="dropdown-item" > My Profile</a>
+      <a class="dropdown-item" > My Balance</a>
+      <a class="dropdown-item" > Inbox</a> -->
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="/userSetting"> Account Setting</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" (click)="doSignout()"> Logout</a>
+    </div>
+  </li>
+  <!-- ============================================================== -->
+  <!-- User profile and search -->
+  <!-- ============================================================== -->
+</ul>

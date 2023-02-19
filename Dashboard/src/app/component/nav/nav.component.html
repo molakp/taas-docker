@@ -1,0 +1,124 @@
+<div class="row">
+  <!-- ==================================-->
+  <!-- ======= Basic Nav ===== -->
+  <!-- ==================================-->
+  <div class="col-12">
+    <div class="card">
+      <div class="p-3" mb-0>
+        <h4 class="card-title mb-0">Vehicle Types</h4>
+      </div>
+      <div class="card-body border-top">
+        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>Coupe</a>
+            <ng-template ngbNavContent>
+              <p >
+                A coupe has historically been considered a two-door car with a trunk and a 
+                solid roof. This would include cars like a Ford Mustang or Audi A5—or even 
+                two-seat sports cars like the Chevrolet Corvette and Porsche Boxster. Recently, 
+                however, car companies have started to apply the word "coupe" to four-door cars 
+                or crossovers with low, sleek rooflines that they deem "coupe-like." This 
+                includes vehicles as disparate as a Mercedes-Benz CLS sedan and BMW X6 SUV. At 
+                Car and Driver, we still consider a coupe to be a two-door car.
+                -----------------{{localFeedback.length !=0 ? localFeedback[0].user?.name : 'No feedback yet' }}----------------
+              </p>
+              <div class="row align-items-md-stretch">
+                  <div class="col-md-7">
+                    <h4 class="featurette-heading mt-4">Modello economico di base. 
+                    </h4>
+                    <p class="lead">
+                      questa è una presentazione del nosto modello di base con prezzi economici alla portata di tutti
+                    </p>
+                  </div>
+                  <div class="col-md-5">
+                    <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2019-mercedes-benz-e-class-coupe-1548703839.jpg?crop=1xw:0.9997727789138833xh;center,top&resize=980:*" width="100%" height="100%" >
+                  </div>
+              </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>Sports Car</a>
+            <ng-template ngbNavContent>
+              <p>
+                These are the sportiest, hottest, coolest-looking coupes and convertibles—low to 
+                the ground, sleek, and often expensive. They generally are two-seaters, but sometimes 
+                have small rear seats as well. Cars like the Porsche 911 and Mazda Miata are typical 
+                sports cars, but you can stretch the definition to include muscle cars like the Ford 
+                Mustang and Dodge Challenger. Then there are the high-end exotic dream cars with 
+                sky-high price tags for the one percent, cars like the Ferrari 488 GTB and Aston Martin 
+                Vantage, which stop traffic with their spaceship looks.
+
+              </p>
+              <div class="row align-items-md-stretch">
+                <div class="col-md-7">
+                  <h4 class="featurette-heading mt-4">Modello di Frisullo. 
+                  </h4>
+                  <p class="lead">
+                    questa è una presentazione del nosto modello di base con prezzi economici alla portata di tutti
+                  </p>
+                </div>
+                <div class="col-md-5">
+                  <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2019-chevrolet-corvette-1548707003.jpg?crop=1xw:1xh;center,top&resize=980:*" width="100%" height="100%" >
+                </div>
+            </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>SUV</a>
+            <ng-template ngbNavContent>
+              <p>
+                SUVs—often also referred to as crossovers—tend to be taller and boxier than sedans, 
+                offer an elevated seating position, and have more ground clearance than a car. They 
+                include a station wagon-like cargo area that is accessed through a flip-up rear hatch 
+                door, and many offer all-wheel drive. The larger ones have three rows of seats. Sizes 
+                start at subcompact (Hyundai Kona, Nissan Kicks), mid-size, and go all the way to 
+                full-size (Ford Expedition, Chevrolet Tahoe). Luxury brands offer many SUV models in 
+                most of the same size categories.
+              </p>
+              <div class="row align-items-md-stretch">
+                <div class="col-md-7">
+                  <h4 class="featurette-heading mt-4">Modello economico di base. 
+                  </h4>
+                  <p class="lead">
+                    questa è una presentazione del nosto modello di base con prezzi economici alla portata di tutti
+                  </p>
+                </div>
+                <div class="col-md-5">
+                  <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2019-hyundai-kona-1548195339.jpg?crop=1xw:0.9997727789138833xh;center,top&resize=980:*" width="100%" height="100%" >
+                </div>
+            </div>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="4">
+            <a ngbNavLink>Pickup Truks</a>
+            <ng-template ngbNavContent>
+              <p>
+                A pickup truck has a passenger cab and an open cargo bed in the rear. Virtually 
+                all pickups offer some form of all-wheel drive or part-time four-wheel drive—the 
+                latter for off-road use only. With one exception—the mid-sized Honda Ridgeline—pickup 
+                bodies are cabs mounted to a separate steel frame. The Ridgeline is more like a 
+                crossover with the rear section of the roof lopped off to expose a cargo bed. 
+                Currently, pickup trucks come in two size categories: full-size and mid-size.
+              </p>
+              <div class="row align-items-md-stretch">
+                <div class="col-md-7">
+                  <h4 class="featurette-heading mt-4">Modello economico di base. 
+                  </h4>
+                  <p class="lead">
+                    questa è una presentazione del nosto modello di base con prezzi economici alla portata di tutti
+                  </p>
+                </div>
+                <div class="col-md-5">
+                  <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2019-honda-ridgeline-1548198293.jpg?crop=1xw:1xh;center,top&resize=980:*" width="100%" height="100%" >
+                </div>
+            </div>
+            </ng-template>
+            
+          </li>
+        </ul>
+
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+      </div>
+    </div>
+  </div>
+</div>

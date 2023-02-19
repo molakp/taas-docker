@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: api-service
+  name: api-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: api-service
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: api-service
+    spec:
+      containers:
+        - image: ssilvestro/api-service
+          name: api-service
+          ports:
+            - containerPort: 8080
+          resources: {}
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: api-service
+  name: api-service
+spec:
+  ports:
+    - name: "8080"
+      port: 8080
+      targetPort: 8080
+  selector:
+    io.kompose.service: api-service

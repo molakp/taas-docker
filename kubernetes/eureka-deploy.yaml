@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: discovery-server
+  name: discovery-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: discovery-server
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: discovery-server
+    spec:
+      containers:
+        - image: ssilvestro/discovery-server
+          name: discovery-server
+          ports:
+            - containerPort: 8761
+          resources: {}
+      restartPolicy: Always
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: discovery-server
+  name: discovery-server
+spec:
+  ports:
+    - name: "8761"
+      port: 8761
+      targetPort: 8761
+  selector:
+    io.kompose.service: discovery-server

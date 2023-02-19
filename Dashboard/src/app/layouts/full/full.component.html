@@ -1,0 +1,159 @@
+
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div
+  id="main-wrapper"
+  [ngClass]="{ 'show-sidebar': showMobileMenu }"
+  dir="ltr"
+  data-theme="light"
+  data-layout="vertical"
+  [attr.data-sidebartype]="sidebartype"
+  data-sidebar-position="absolute"
+  data-header-position="absolute"
+  data-boxed-layout="full"
+>
+  <!-- ============================================================== -->
+  <!-- Topbar header - style you can find in topbar.scss -->
+  <!-- ============================================================== -->
+  <header class="topbar" data-navbarbg="skin1">
+    <nav class="d-flex top-navbar navbar-expand-lg navbar-dark">
+
+
+      <div
+        class="navbar-header"
+        [ngClass]="expandLogo ? 'expand-logo' : ''"
+        data-logobg="skin6"
+      >
+        <!-- This is for the sidebar toggle which is visible on mobile only -->
+        <a
+          (click)="showMobileMenu = !showMobileMenu"
+          class="nav-toggler waves-effect waves-light d-block d-lg-none"
+        >
+          <i [ngClass]="showMobileMenu ? 'bi bi-text-left fs-6' : 'bi bi-text-left fs-6'"></i>
+        </a>
+        <!-- ============================================================== -->
+        <!-- Logo -->
+        <!-- ============================================================== -->
+        <a class="navbar-brand" [routerLink]="" (click)="change()">
+          <!-- Logo icon -->
+          <b class="logo-icon">
+            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+            <!-- Light Logo icon -->
+            <img
+            src="assets/images/logos/B-Next-logo%2070x70.jpeg"
+            alt="homepage"
+            class="dark-logo"
+
+            />
+          </b>
+          <!--End Logo icon -->
+          <!-- Logo text
+          <span class="logo-text">
+
+            <img
+              src="assets/images/logos/BnextLogo.png"
+              class="dark-logo"
+              alt="homepage"
+            />
+          </span>
+
+          -->
+
+        </a>
+        <!-- ============================================================== -->
+        <!-- End Logo -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Toggle which is visible on mobile only -->
+        <!-- ============================================================== -->
+        <a
+          class="topbartoggler d-block d-lg-none waves-effect waves-light"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed"
+        >
+          <i class="bi bi-text-right fs-6"></i>
+        </a>
+      </div>
+
+
+
+      <!-- ============================================================== -->
+      <!-- End Logo -->
+      <!-- ============================================================== -->
+
+      <div
+        class="navbar-collapse collapse"
+        id="navbarSupportedContent"
+        data-navbarbg="skin1"
+        [ngbCollapse]="!isCollapsed"
+      >
+      <!-- Con questo creo la barra in alto con il nome dell'utente, logout ecc-->
+        <app-navigation
+          (toggleSidebar)="toggleSidebarType()"
+          class="w-100"
+        ></app-navigation>
+      </div>
+    </nav>
+  </header>
+  <!-- ============================================================== -->
+  <!-- Left Sidebar - style you can find in sidebar.scss  -->
+  <!-- ============================================================== -->
+  <aside
+    class="left-sidebar"
+    data-sidebarbg="skin6"
+    (mouseover)="Logo()"
+    (mouseout)="Logo()"
+  >
+  <!-- Con questo creo la barra laterale sinistra-->
+      <app-sidebar></app-sidebar>
+  </aside>
+  <!-- ============================================================== -->
+  <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Page wrapper  -->
+  <!-- ============================================================== -->
+  <div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+      <!-- ============================================================== -->
+      <!-- Start Page Content -->
+      <!-- ============================================================== -->
+      <!-- Con questo riempo la pagina centrale, in pratica ciò che devo vedere-->
+
+      <router-outlet></router-outlet>
+      <!-- ============================================================== -->
+      <!-- End Start Page Content -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+
+
+
+
+
+
+    <footer class="footer text-center">
+      All Rights Reserved by B-Next Inc.
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+  </div>
+  <!-- ============================================================== -->
+  <!-- End Page wrapper  -->
+  <!-- ============================================================== -->
+</div>

@@ -1,0 +1,103 @@
+<div _ngcontent-c11="" class="card">
+  <div _ngcontent-c11="" class="card-header">
+    <h5 _ngcontent-c11="" class="title mb-3">Edit Profile</h5>
+  </div>
+  <div _ngcontent-c11="" class="card-body">
+
+
+
+    <form _ngcontent-c11="" novalidate="" class="ng-untouched ng-pristine ng-valid" name="editForm_Settings">
+      <div _ngcontent-c11="" class="row">
+
+        <!-- User ID-->
+        <div _ngcontent-c11="" class="col-md-5 pr-1">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">UserID</label>
+            <input _ngcontent-c11="" class="form-control mt-2 " disabled="" placeholder="{{user.userId}}"
+              value="{{user.userId}}" name="{{user.userId}}_Settings">
+          </div>
+        </div>
+
+        <!-- Username-->
+        <div _ngcontent-c11="" class="col-md-3 px-1">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">Username</label>
+            <input _ngcontent-c11="" class="form-control mt-2" disabled="" placeholder="{{user.username}}"
+              value="{{user.username}}" [(ngModel)]="fieldModifiedUser.username" name="{{user.username}}_Settings"
+              type="email">
+          </div>
+        </div>
+
+        <!-- Data di nascita-->
+        <div _ngcontent-c11="" class="col-md-4 pl-1">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">Date of birth</label>
+            <input _ngcontent-c11="" class="form-control mt-2" id="birth" name="{{user.birthDate}}_Settings"
+              value="{{user.birthDate}}" type="date" [(ngModel)]="fieldModifiedUser.birthDate">
+          </div>
+        </div>
+      </div>
+
+      <!-- Riga in cui stampo nome e cognome -->
+      <div _ngcontent-c11="" class="row">
+        <!-- Nome -->
+        <div _ngcontent-c11="" class="col-md-6 pr-1">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">First Name</label>
+            <input _ngcontent-c11="" class="form-control mt-2" name="{{user.name}}_Settings"
+              placeholder="{{user.name?? 'No name entered'}}" value="{{user.name}}"
+              [(ngModel)]="fieldModifiedUser.name">
+          </div>
+        </div>
+
+        <!-- Cognome -->
+        <div _ngcontent-c11="" class="col-md-6 pl-1">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">Last Name</label>
+            <input _ngcontent-c11="" class="form-control mt-2" placeholder="{{user.surname?? 'No last name entered'}}"
+              value="{{user.surname}}" name="{{user.surname}}_Settings" [(ngModel)]="fieldModifiedUser.surname">
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Riga in cui stampo Ruoli e se è attivo-->
+      <div _ngcontent-c11="" class="row">
+        <!-- Ruoli -->
+        <div _ngcontent-c11="" class="col-md-6 pr-1">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">Roles of user</label>
+            <input _ngcontent-c11="" class="form-control mt-2" disabled="" placeholder="{{user.roles}}"
+              value="{{user.roles}}" name="{{user.roles}}_Settings">
+          </div>
+        </div>
+
+        <!-- Attivo -->
+        <div _ngcontent-c11="" class="col-md-6 pl-1">
+          <div _ngcontent-c11="" class="form-group">
+            <label _ngcontent-c11="">User is active?</label>
+            <input _ngcontent-c11="" class="form-control mt-2" disabled="" placeholder="{{user.active}}"
+              value="{{ user.active == '1' ? 'Active' : 'Disabled'}}" name="userActive_Settings">
+          </div>
+        </div>
+      </div>
+
+      <div class="button-group text-center mt-3">
+        <button type="submit" name="edit_Settings" class="btn btn-outline-success btn-lg me-5 col-md-auto"
+          (click)="editUser('edit')"> Edit
+          profile </button>
+
+        <button type="submit" name="delete_Settings" class="btn btn-outline-danger btn-lg ms-5 col-md-auto"
+          (click)="editUser('delete')">
+          Delete user
+        </button>
+
+      </div>
+
+
+    </form>
+
+    <!-- Inizio del form-->
+
+  </div>
+</div>
