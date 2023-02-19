@@ -4,9 +4,15 @@ import bnext.backend.api.car.Car;
 import bnext.backend.api.car.CarService;
 import bnext.backend.api.user.UserService;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.sql.Timestamp;
 import java.util.*;
@@ -168,5 +174,25 @@ public class ReservationService {
         return reservationList;
 
 
+    }
+
+
+    public String addReservationWithPosition(Reservation reservation) {
+
+        //System.out.println("Date********\nStartOfBook : "+ reservation.getStartOfBook()+"\nEndOfBook : "+reservation.getEndOfBook());
+        List<Car> availableCars = searchAvailableCars(reservation.getStartOfBook(), reservation.getEndOfBook());
+        // booleano che mi indica se la macchina che vogliamo prenotare è presente nella lista delle macchine disponibili
+        boolean isPresent = false;
+        // vado a vedere se la macchina che vogliamo prenotare è disponibile (cioè se è presente nella lista availableCars)
+        for (Car car : availableCars)
+            if (reservation.getCar().getCarId().equals(car.getCarId())) {
+                isPresent = true;
+                // ho trovato la macchina, è presente, quindi non c'è bisogno di scorrere tutta la lista
+                break;
+            }
+        if (!isPresent) return "Car in this date isn't available, is already booked";
+
+        reservationRepository.save(reservation);
+        return "RESERVATION SUCCESFULLY ADDED";
     }
 }

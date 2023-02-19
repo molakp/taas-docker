@@ -1,12 +1,18 @@
 package bnext.backend.api.reservation;
-
 import bnext.backend.api.car.Car;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.amqp.core.Binding;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,6 +30,11 @@ public class ReservationController {
     private ReservationService reservationService;
     @Autowired
     private ReservationRepository reservationRepository;
+
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+    @Autowired
+    Binding binding;
 
 
     // Reqest mapping ha come default una richiesta di get, quindi dico cosa fare in caso di richiesta GET
@@ -93,4 +104,32 @@ public class ReservationController {
 
         return reservationService.searchAvailableCars(startOfBookParsed, endOfBookParsed);
     }
+
+
+   private static final Logger LOGGER = LoggerFactory.getLogger(ReservationController.class);
+    //Metodo che usa RabbitMQ per mandare una reservation con posizione
+    @PostMapping( "/addWithPosition")
+    @ResponseStatus(code = HttpStatus.OK)
+    public @NotNull String addReservationWithPosition(@RequestBody Reservation reservation) {
+
+        LOGGER.info("Sending message to the queue.");
+        /*
+        ObjectMapper objectMapper = new ObjectMapper();
+         try {
+            String jsonString = objectMapper.writeValueAsString(reservation);
+            rabbitTemplate.convertAndSend(binding.getExchange(), binding.getRoutingKey(), jsonString);
+        LOGGER.info("Message sent successfully to the queue!!!");
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+         */
+        Gson gson = new Gson();
+        rabbitTemplate.convertAndSend(binding.getExchange(), binding.getRoutingKey(),gson.toJson(reservation.getStartPosition()) );
+        return reservationService.addReservationWithPosition(reservation);
+    }
+
+
+
+
+
 }

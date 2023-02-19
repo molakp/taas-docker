@@ -5,7 +5,7 @@ mvn clean install
 $IMAGE_NAME="api-service-docker"
 $USERNAME="ssilvestro"
 $REPO_NAME="api-service-docker"
-$TAG="1.0.0"
+$TAG="1.0.2"
 
 # Build the Docker image
 docker build -t $IMAGE_NAME .
