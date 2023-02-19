@@ -1,5 +1,0 @@
-Problemi
-
-Update feedback: prima dell'update la get car ritorna anche i feedback, dopo l'update no. User conserva il feedback.
-Cosa va fatto: conservare il link da car allo stesso oggetto feedback.
-
