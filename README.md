@@ -1,11 +1,11 @@
 # taas-microservices-eureka
 
-|Servizio| Funzione| Porta| Java |
-|----------|----------|----------|----------|
-|Eureka| Discovery|  http://localhost:8761/ | 11 |
-|API service| Il servizio principale che fa tutto tranne posizioni | http://localhost:8080/ | 11 |
-|Position | Il servizo delle posizioni | http://localhost:8081/ | 11 |
-| Api Gateway | Riunisce tutti i servizi sotto un unico url | http://localhost:9191/ | 18 |
+|Servizio| Funzione| Porta| Java | Note                                        |
+|----------|----------|----------|----------|---------------------------------------------|
+|Eureka| Discovery|  http://localhost:8761/ | 11 |                                             |
+|API service| Il servizio principale che fa tutto tranne posizioni | http://localhost:8080/ | 11 |                                             |
+|Position | Il servizo delle posizioni | http://localhost:8081/ | 11 | Avviare Maven da menù a sinistra laterale!! |
+| Api Gateway | Riunisce tutti i servizi sotto un unico url | http://localhost:9191/ | 18 |                                             |
 
 Per avviarli da IntelliJ occhio alle rispettive versioni, JAVA 11 per i primi 3 e java 18 per api gateway.
 
